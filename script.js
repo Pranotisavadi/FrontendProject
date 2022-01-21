@@ -33,30 +33,30 @@ searchButton.addEventListener("click", (event) => {
 
 })
 
-// cardGroup.addEventListener("click", bookDetails)
+bookList.addEventListener("click", bookDetails)
 
-// function bookDetails(event){
-//    if (event.target.classList.contains("btn-book"))
-//       console.log(event.target.id)
-//       // cardGroup.innerHTML = ""
-//       fetch(`https://www.googleapis.com/books/v1/volumes/${event.target.id}`)
-//       .then((response) => response.json())
-//       .then(result => {
-//           console.log(result.volumeInfo)
-//           let item = document.createElement("a");
-//           item.innerHTML = `<div>
-//           <img src="${result.volumeInfo.imageLinks.thumbnail}" alt="...">
-//           <div class="card-body">
-//           <h3 class="card-title overflow-hidden">${result.volumeInfo.large}</h3>
-//           <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
-//           </div>
-//           </div><br>`;
-//           document.getElementById("results").innerHTML = moreInfo.appendChild(item);
-//           let drinkButton = document.createElement("button")
-//           drinkButton.innerHTML = "Want a drink?"
-//           document.getElementById("results").innerHTML = moreInfo.appendChild(drinkButton);
-//       })
-// }
+function bookDetails(event){
+   if (event.target.classList.contains("btn-book"))
+      console.log(event.target.id)
+      // cardGroup.innerHTML = ""
+      fetch(`https://www.googleapis.com/books/v1/volumes/${event.target.id}`)
+      .then((response) => response.json())
+      .then(result => {
+          console.log(result.volumeInfo)
+          let item = document.createElement("a");
+          item.innerHTML = `<div>
+          <img src="${result.volumeInfo.imageLinks.thumbnail}" alt="...">
+          <div class="card-body">
+          <h3 class="card-title overflow-hidden">${result.volumeInfo.large}</h3>
+          <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
+          </div>
+          </div><br>`;
+          document.getElementById("book-list").innerHTML = moreInfo.appendChild(item);
+          let drinkButton = document.createElement("button")
+          drinkButton.innerHTML = "Want a drink?"
+          document.getElementById("results").innerHTML = moreInfo.appendChild(drinkButton);
+      })
+}
 // const oneDrink = document.getElementById('oneDrink')
 
 // fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php?a=Alcoholic')
