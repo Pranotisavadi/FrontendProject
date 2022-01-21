@@ -10,8 +10,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
-h2{text-align: center} 
+   }
+
+h2{
+    text-align: center
+} 
  .grid1{
         /*border:  3px solid black;*/
         
@@ -106,7 +109,9 @@ h2{text-align: center}
     margin: 200px 2px;
 }
 
- 
+.margin{
+     padding-top: 30px;
+} 
 
   
 /* orange: #C8651B
