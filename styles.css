@@ -5,10 +5,12 @@
     
      }
 
-   
+h2{
+        text-align: center
+} 
 
-h2{text-align: center} 
- .grid1{
+
+.grid1{
         /*border:  3px solid black;*/
         
         grid-column-start: 1;
@@ -23,7 +25,7 @@ h2{text-align: center}
         padding-top: 50px;
     }
 
-    .grid2{
+.grid2{
         /*border:  3px solid black;*/
         grid-column-start: 1;
         grid-column-end: 5;
@@ -36,26 +38,43 @@ h2{text-align: center}
         align-content: center;  
         /* padding-bottom: 50px; */
     }
-    .darkred-background {
+.darkred-background {
         background-color:#660527;
-      }     
+    }     
     
-    .darkblue-background {
+.darkblue-background {
         background-color: #08122B;
-      }
-   .text-orange{
+    }
+.orange-background {
+        background-color: #C8651B;
+    }
+     
+.black-background{
+     background-color: black;
+    }
+
+.text-black{
+        color : black
+    } 
+.text-orange{
        color : #C8651B
-   }  
-   .black-background{
-    background-color: black;
    }
-   .text-white{
+
+.text-white{
        color:white;
    }
-   .font1{
+.font1{
        font-size: 80px;
    }
-   .button {
+.column{
+    column-count: 4;
+    column-gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+   }
+
+.button {
     width:200px;
     border: none;
     padding: 12px;
@@ -65,9 +84,10 @@ h2{text-align: center}
     font-size: 16px;
     margin : 15px 2px;
     border-radius: 12px;
-    font-weight: bold;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
     }
-    .button1 {
+.button1 {
         width:200px;
         border: none;
         padding: 12px;
@@ -77,24 +97,28 @@ h2{text-align: center}
         font-size: 16px;
         margin : 15px 2px;
         border-radius: 12px;
-        font-weight: bold;
+        font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
     }
 
 .bullet {
     list-style-type: none; 
-}
+    }
 .row {
     margin-top: 50px;
-}
+    }
 .button:active {
    box-shadow: 0 5px #C8651B;
     transform: translateY(4px);
 }
+
 .thirsty{
     margin: 200px 2px;
 }
 
- 
+.margin{
+     padding-top: 30px;
+} 
 
   
 /* orange: #C8651B
@@ -161,8 +185,6 @@ background-color: #C8651B;
 
 
 #landing-page-main{
-   
-
 }
 
 #main-header{
