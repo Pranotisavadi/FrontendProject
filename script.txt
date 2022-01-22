@@ -24,7 +24,6 @@ searchButton.addEventListener("click", (event) => {
             </div><br>`;
         document.getElementById("book-list").appendChild(item);
         searchButton.innerHTML= ""
-        document.getElementById("head2").innerHTML="Pick your Favorite Book!"
       }
 
 })
