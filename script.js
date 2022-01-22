@@ -42,12 +42,13 @@ function bookDetails(event){
           console.log(result.volumeInfo);
           let item = document.createElement("a");
           item.innerHTML = `<div class="card" style="width: 30rem;>
-          <img src="${result.volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="...">
+          <img src="${result.volumeInfo.imageLinks.large}" class="card-img-top img-fluid" alt="...">
           <div class="card-body">
           <h3 class="card-title overflow-hidden">${result.volumeInfo.title}</h3>
           <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
           </div>
           </div>`;
+          console.log(item)
           document.getElementById("book-list").innerHTML = item.innerHTML;
           // let drinkButton = document.createElement("button");
           // drinkButton.innerHTML = "Want a drink?";
