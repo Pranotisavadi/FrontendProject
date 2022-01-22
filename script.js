@@ -64,29 +64,29 @@ function bookDetails(event){
     console.log("Unable to get certain elements")})
 }
  // ----------------------------- more options drinks --------------------------------- (1)
-moreOption.addEventListener('click', (e) => {
-  e.preventDefault()
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-     .then(response => response.json())
-     .then(data => {
-          renderDrinks(data.drinks)
-     });
-function renderDrinks(drinkData) {
-     drinkData.map(drink => {
-          let drinklist= `
-          <div class='drinksMenu'>
-               <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
-               <div class='drinkIngrediant'>
-                    <h3 id='drinkName'>${drink.strDrink}</h3>
-                    <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
-               </div>
-          </div>      
-          `
-          allDrinks.innerHTML += drinklist;
-     }); 
-};
+// moreOption.addEventListener('click', (e) => {
+//   e.preventDefault()
+//   fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
+//      .then(response => response.json())
+//      .then(data => {
+//           renderDrinks(data.drinks)
+//      });
+// function renderDrinks(drinkData) {
+//      drinkData.map(drink => {
+//           let drinklist= `
+//           <div class='drinksMenu'>
+//                <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
+//                <div class='drinkIngrediant'>
+//                     <h3 id='drinkName'>${drink.strDrink}</h3>
+//                     <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
+//                </div>
+//           </div>      
+//           `
+//           allDrinks.innerHTML += drinklist;
+//      }); 
+// };
 
-})
+// })
 
 //-------------------------- change object to Array -- hard coded
 allDrinks.addEventListener('click', (e) => {
