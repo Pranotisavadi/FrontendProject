@@ -40,6 +40,7 @@ function bookDetails(event){
       .then((response) => response.json())
       .then(result => {
           console.log(result.volumeInfo);
+          console.log(result.volumeInfo.imageLinks.large);
           let item = document.createElement("a");
           item.innerHTML = `<div class="card" style="width: 30rem;>
           <img src="${result.volumeInfo.imageLinks.large}" class="card-img-top img-fluid" alt="...">
