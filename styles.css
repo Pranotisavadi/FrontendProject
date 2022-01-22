@@ -4,8 +4,17 @@
     /* height: auto; */
      }
 
+.column{
+    column-count: 4;
+    column-gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+   }
 
-h2{text-align: center} 
+h2{
+    text-align: center
+} 
  .grid1{
         /*border:  3px solid black;*/
         
@@ -41,6 +50,13 @@ h2{text-align: center}
     .darkblue-background {
         background-color: #08122B;
       }
+    .orange-background {
+        background-color: #C8651B;
+        ;
+      }
+    .text-black{
+        color : black
+    } 
    .text-orange{
        color : #C8651B
    }  
@@ -88,11 +104,14 @@ h2{text-align: center}
    box-shadow: 0 5px #C8651B;
     transform: translateY(4px);
 }
+
 .thirsty{
     margin: 200px 2px;
 }
 
- 
+.margin{
+     padding-top: 30px;
+} 
 
   
 /* orange: #C8651B
