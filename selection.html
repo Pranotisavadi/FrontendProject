@@ -43,16 +43,16 @@
                Pick your favorite genre!
           </h2>
  </div>
-<div class="row" id="genre-buttons">
+<div class="row" id="genre-buttons"> //book genre
         <div class="col-md-6">
           <div class="col-md-12 d-flex justify-content-center">
             <form>
             <ul class="bullet">
              <li><button class="button black-background text-white" type="fiction" disabled >Fiction</button></li>
              <li><button class="button" id="romance" type="romance">Romance</button></li>
-            <li><button class="button" type="thriller">Thriller</button></li>
-            <li><button class="button" type="Fantasy">Fantasy</button></li>
-            <li><button class="button" type="Adventure">Adventure</button></li>
+            <li><button class="button" id="thriller">Thriller</button></li>
+            <li><button class="button" id="Fantasy">Fantasy</button></li>
+            <li><button class="button" id="Adventure">Adventure</button></li>
             </ul>
           </div>
         </div>
@@ -60,17 +60,19 @@
           <div class="col-md-12 d-flex justify-content-center">
             <ul class="bullet"> 
             <li><button class="button black-background text-white" type="nonfiction" disabled>Non-Fiction</button></li>
-            <li><button class="button" type="history">History</button></li>
-            <li><button class="button" type="biography">Biography</button></li>
-            <li><button class="button" type="travel">Travel</button></li>
-            <li><button class="button" type="science">Science</button></li>
+            <li><button class="button" id="history">History</button></li>
+            <li><button class="button" id="biography">Biography</button></li>
+            <li><button class="button" id="travel">Travel</button></li>
+            <li><button class="button" id="science">Science</button></li>
         </form>
           </div>
         </div>
     </div>
-  <div class="container column" id="book-list">
+
+  <div class="container column" id="book-list"> //list of books
     </div>
 
+    // drink statr from here
     <div class="row">
       <div class="col" >
             <div class="d-flex justify-content-center" id="book-info">
@@ -85,8 +87,8 @@
           </ul>
       </div> 
       <div class="col" >
-        <div class="d-flex justify-content-center" id="drinks-title">
-          <img src="Images/drink.jpg">
+        <div class="d-flex justify-content-center" id="randomDrink">
+          <!-- <img src="Images/drink.jpg"> -->
         </div>
         <div class="d-flex justify-content-center" id="drink-info">
           <img src="Images/drink.jpg">
