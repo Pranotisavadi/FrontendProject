@@ -272,7 +272,7 @@ background-color: #C8651B;
 #meet-the-team{
   display: grid; 
   grid-template-columns: 1;
-  grid-template-rows: auto 1fr 1fr 1fr 1fr; 
+  grid-template-rows: auto auto auto auto auto; 
     
 }
 
@@ -312,6 +312,7 @@ background-color: #C8651B;
     width: 90%;
     padding: 10px;
     text-align: center;
+    border-radius: 2px;
 }
   
 
@@ -322,6 +323,7 @@ background-color: #C8651B;
     height: auto;
     margin: 10px; 
     color: #F9EFEE;
+   
 
 }
 
