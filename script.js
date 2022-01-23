@@ -2,9 +2,8 @@ const inputBox = document.getElementById("input");
 const searchButton = document.getElementById("genre-buttons");
 const cardGroup = document.getElementById("card-group")
 const bookList = document.getElementById("book-list")
-const oneDrink = document.getElementById('oneDrink')
 const randomDrink = document.getElementById("randomDrink")
-const moreOption = document.getElementById("moreOption")
+const drinkInfo = document.getElementById("drinkInfo")
 
 searchButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -63,66 +62,9 @@ function bookDetails(event){
     .catch((error) => {
     console.log("Unable to get certain elements")})
 }
- // ----------------------------- more options drinks --------------------------------- (1)
-moreOption.addEventListener('click', (e) => {
-  e.preventDefault()
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-     .then(response => response.json())
-     .then(data => {
-          renderDrinks(data.drinks)
-     });
-function renderDrinks(drinkData) {
-     drinkData.map(drink => {
-          let drinklist= `
-          <div class='drinksMenu'>
-               <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
-               <div class='drinkIngrediant'>
-                    <h3 id='drinkName'>${drink.strDrink}</h3>
-                    <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
-               </div>
-          </div>      
-          `
-          allDrinks.innerHTML += drinklist;
-     }); 
-};
 
-})
-
-//-------------------------- change object to Array -- hard coded
-allDrinks.addEventListener('click', (e) => {
-  if(e.target.className.includes('btn-primary')){
-       console.log(e.target.id, "e.id"); //testing if we are targeting the id to call the other API
-       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${e.target.id}`)
-            .then(response => response.json())
-            .then((singleDrink) => {
-                 console.log(singleDrink)
-                 console.log(singleDrink.drinks[0].strIngredient1) //testing if we fetch the other API
-                 let ingredients = [
-                      singleDrink.drinks[0].strIngredient1,
-                      singleDrink.drinks[0].strIngredient2,
-                      singleDrink.drinks[0].strIngredient3,
-                      singleDrink.drinks[0].strIngredient4,
-                      singleDrink.drinks[0].strIngredient5,
-                      singleDrink.drinks[0].strIngredient6,
-                      singleDrink.drinks[0].strIngredient7,
-                      singleDrink.drinks[0].strIngredient8,
-                      singleDrink.drinks[0].strIngredient9,
-                      singleDrink.drinks[0].strIngredient10,
-                      singleDrink.drinks[0].strIngredient11,
-                      singleDrink.drinks[0].strIngredient12,
-                      singleDrink.drinks[0].strIngredient13,
-                      singleDrink.drinks[0].strIngredient14,
-                      singleDrink.drinks[0].strIngredient15,
-                 ];
-                 renderOneDrink(ingredients);
-
-            }) 
-  }    
-}); 
-
-
-// ------ recomendation drink ------------------------------------------------ (2)
 recommendation.addEventListener('click', (e) => {
+     drinkInfo.innerHTML = "";
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php?a=Alcoholic')
      .then(response => response.json())
      .then(data => {
@@ -145,15 +87,15 @@ function renderRandomDrink(drinkData) {
 
 })
 
-//-------
+
 randomDrink.addEventListener('click', (e) => {
      if(e.target.className.includes('btn-primary')){
-          console.log(e.target.id, "e.id"); //testing if we are targeting the id to call the other API
+          console.log(e.target.id, "e.id");
           fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${e.target.id}`)
                .then(response => response.json())
                .then((singleDrink) => {
                     console.log(singleDrink)
-                    console.log(singleDrink.drinks[0].strIngredient1) //testing if we fetch the other API
+                    console.log(singleDrink.drinks[0].strIngredient1)
                     let ingredients = [
                          singleDrink.drinks[0].strIngredient1,
                          singleDrink.drinks[0].strIngredient2,
@@ -177,7 +119,7 @@ randomDrink.addEventListener('click', (e) => {
      }    
 }); 
 
-function renderOneDrink(id) { // map over the ingredient and filter the empty and null values
+function renderOneDrink(id) { 
   console.log(id)
   let aDrink = `
   <div class="oneDrinkDiv">
@@ -186,7 +128,7 @@ function renderOneDrink(id) { // map over the ingredient and filter the empty an
        
        </ul>
   </div>`
-  oneDrink.innerHTML = aDrink;
+  drinkInfo.innerHTML = aDrink;
   const drinkIngrediant = document.getElementById('drink-ingredients'); 
   id.map(ingredient => {
        switch (ingredient) {
@@ -195,9 +137,8 @@ function renderOneDrink(id) { // map over the ingredient and filter the empty an
             case "":
                  break;
             default:
-            // console.log(ingredient)
             let iList = `<li>${ingredient}</li>`
-            oneDrink.innerHTML += iList; 
+            drinkIngrediant.innerHTML += iList; 
        } 
   }) 
 }
