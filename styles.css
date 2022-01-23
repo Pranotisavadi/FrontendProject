@@ -402,3 +402,33 @@ font-family: 'Anton', sans-serif;
     
     }
     
+.book-cards{
+    background-color: #C8651B;
+}
+
+.btn-book{
+    background-color: #08122B;
+    border:none; 
+}
+
+#drink-selector-hidden{
+    display: none;
+
+    
+}
+
+#head2{
+    color:white;
+}
+
+.nav-selection{
+    background-color: #660527;
+}
+
+li button:hover{
+    background-color: #C8651B;
+}
+
+.button-main:hover{
+    background-color: black;
+}

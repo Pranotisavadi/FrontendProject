@@ -16,16 +16,16 @@ searchButton.addEventListener("click", (event) => {
     .then(result => {
       for (i = 0; i < result.items.length; i++){
         let item = document.createElement("a");
-        item.innerHTML += `<div class="card" style="width: 15rem;">
+        item.innerHTML += `<div class="card book-cards" style="width: 15rem;">
             <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="...">
             <div class="card-body">
             <h3 class="card-title overflow-hidden">${result.items[i].volumeInfo.title}</h3>
-            <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">Learn More</h5>
+            <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">More Info</h5>
             </div>
             </div><br>`;
         document.getElementById("book-list").appendChild(item);
         searchButton.innerHTML= ""
-        document.getElementById("head2").innerHTML="Pick your Favorite Book!"
+        document.getElementById("head2").innerHTML="Pick your favorite book!"
       }
 
 })
@@ -43,6 +43,11 @@ function bookDetails(event){
       .then(result => {
           console.log(result.volumeInfo);
           console.log(result.volumeInfo.imageLinks.large);
+          const drinkSelector= document.getElementById('drink-selector-hidden')
+          drinkSelector.style.display="flex";
+
+          document.getElementById("head2").innerHTML="Pair it with a drink!"
+
           let item = document.createElement("a");
           item.innerHTML = `<div class="card" style="width: 15rem;">
           <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
@@ -73,13 +78,18 @@ recommendation.addEventListener('click', (e) => {
 function renderRandomDrink(drinkData) {
      drinkData.map(drink => {
           let recomendaDrink= `
-          <div class='drinksMenu'>
-               <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
-               <div class='drinkIngrediant'>
-                    <h3 id='drinkName'>${drink.strDrink}</h3>
-                    <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
-               </div>
-          </div>      
+          
+          <div class="card" style="width: 15rem;">
+          <img src="${drink.strDrinkThumb} "height: auto";
+          "width: 100%"; class="card-img-top" alt="...">
+          <div class="card-body" id="drink-card">
+          <h3 class="card-title overflow-hidden">${drink.strDrink}</h3>
+          <div id="hidden-ingredient">
+          <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
+          </div>
+        
+          </div>
+          </div>;     
           `
           randomDrink.innerHTML = recomendaDrink;
      }); 
@@ -123,13 +133,18 @@ function renderOneDrink(id) {
   console.log(id)
   let aDrink = `
   <div class="oneDrinkDiv">
-       <h3> Ingredients </h3>
+      
        <ul class="list-group list-group-flush" id="drink-ingredients">
        
        </ul>
   </div>`
   drinkInfo.innerHTML = aDrink;
-  const drinkIngrediant = document.getElementById('drink-ingredients'); 
+  
+const hiddenIngredient=document.getElementById('hidden-ingredient')
+     hiddenIngredient.style.display="none";
+
+
+  const drinkIngrediant = document.getElementById('drink-card'); 
   id.map(ingredient => {
        switch (ingredient) {
             case null:
@@ -138,6 +153,7 @@ function renderOneDrink(id) {
                  break;
             default:
             let iList = `<li>${ingredient}</li>`
+            
             drinkIngrediant.innerHTML += iList; 
        } 
   }) 
