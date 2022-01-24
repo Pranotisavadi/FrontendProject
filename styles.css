@@ -404,6 +404,9 @@ font-family: 'Anton', sans-serif;
     
 .book-cards{
     background-color: #C8651B;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
 }
 
 .btn-book{
@@ -431,4 +434,8 @@ li button:hover{
 
 .button-main:hover{
     background-color: black;
+}
+
+#recommendation-bullet{
+   
 }
