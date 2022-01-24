@@ -17,7 +17,7 @@ searchButton.addEventListener("click", (event) => {
       for (i = 0; i < result.items.length; i++){
         let item = document.createElement("a");
         item.innerHTML += `<div class="card book-cards" style="width: 15rem;">
-            <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="...">
+            <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="..." style="width:85%" style="margin:auto" style="padding: 10px";">
             <div class="card-body">
             <h3 class="card-title overflow-hidden">${result.items[i].volumeInfo.title}</h3>
             <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">More Info</h5>
@@ -49,7 +49,7 @@ function bookDetails(event){
           document.getElementById("head2").innerHTML="Pair it with a drink!"
 
           let item = document.createElement("a");
-          item.innerHTML = `<div class="card" style="width: 15rem;">
+          item.innerHTML = `<div class="card" style="width: 20rem;">
           <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
           "width: 100%"; class="card-img-top" alt="...">
           <div class="card-body">
@@ -79,7 +79,7 @@ function renderRandomDrink(drinkData) {
      drinkData.map(drink => {
           let recomendaDrink= `
           
-          <div class="card" style="width: 15rem;">
+          <div class="card" style="width: 20rem;">
           <img src="${drink.strDrinkThumb} "height: auto";
           "width: 100%"; class="card-img-top" alt="...">
           <div class="card-body" id="drink-card">
