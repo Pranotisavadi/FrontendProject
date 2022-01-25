@@ -2,9 +2,8 @@ const inputBox = document.getElementById("input");
 const searchButton = document.getElementById("genre-buttons");
 const cardGroup = document.getElementById("card-group")
 const bookList = document.getElementById("book-list")
-const oneDrink = document.getElementById('oneDrink')
 const randomDrink = document.getElementById("randomDrink")
-const moreOption = document.getElementById("moreOption")
+const drinkInfo = document.getElementById("drinkInfo")
 
 searchButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -17,16 +16,16 @@ searchButton.addEventListener("click", (event) => {
     .then(result => {
       for (i = 0; i < result.items.length; i++){
         let item = document.createElement("a");
-        item.innerHTML += `<div class="card" style="width: 15rem;">
-            <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="...">
+        item.innerHTML += `<div class="card book-cards" style="width: 15rem;">
+            <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="..." style="width:85%" style="margin:auto" style="padding: 10px";">
             <div class="card-body">
             <h3 class="card-title overflow-hidden">${result.items[i].volumeInfo.title}</h3>
-            <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">Learn More</h5>
+            <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">More Info</h5>
             </div>
             </div><br>`;
         document.getElementById("book-list").appendChild(item);
         searchButton.innerHTML= ""
-        document.getElementById("head2").innerHTML="Pick your Favorite Book!"
+        document.getElementById("head2").innerHTML="Pick your favorite book!"
       }
 
 })
@@ -44,16 +43,23 @@ function bookDetails(event){
       .then(result => {
           console.log(result.volumeInfo);
           console.log(result.volumeInfo.imageLinks.large);
+          const drinkSelector= document.getElementById('drink-selector-hidden')
+          drinkSelector.style.display="flex";
+
+          document.getElementById("head2").innerHTML="Pair it with a drink!"
+
           let item = document.createElement("a");
-          item.innerHTML = `<div class="card" style="width: 30rem;">
-          <img src="${result.volumeInfo.imageLinks.large}" class="card-img-top" alt="...">
+          item.innerHTML = `<div class="card" style="width: 20rem;">
+          <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
+          "width: 100%"; class="card-img-top" alt="...">
           <div class="card-body">
           <h3 class="card-title overflow-hidden">${result.volumeInfo.title}</h3>
           <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
           </div>
           </div>`;
           console.log(item)
-          document.getElementById("book-list").innerHTML = item.innerHTML;
+          document.getElementById("book-list").innerHTML = "";
+          document.getElementById("book-info").innerHTML = item.innerHTML;
           let drinkButton = document.createElement("button");
           drinkButton.innerHTML = "Want a drink?";
           document.getElementById("more-info").appendChild(drinkButton);
@@ -61,66 +67,9 @@ function bookDetails(event){
     .catch((error) => {
     console.log("Unable to get certain elements")})
 }
- // ----------------------------- more options drinks --------------------------------- (1)
-moreOption.addEventListener('click', (e) => {
-  e.preventDefault()
-  fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-     .then(response => response.json())
-     .then(data => {
-          renderDrinks(data.drinks)
-     });
-function renderDrinks(drinkData) {
-     drinkData.map(drink => {
-          let drinklist= `
-          <div class='drinksMenu'>
-               <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
-               <div class='drinkIngrediant'>
-                    <h3 id='drinkName'>${drink.strDrink}</h3>
-                    <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
-               </div>
-          </div>      
-          `
-          allDrinks.innerHTML += drinklist;
-     }); 
-};
 
-})
-
-//-------------------------- change object to Array -- hard coded
-allDrinks.addEventListener('click', (e) => {
-  if(e.target.className.includes('btn-primary')){
-       console.log(e.target.id, "e.id"); //testing if we are targeting the id to call the other API
-       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${e.target.id}`)
-            .then(response => response.json())
-            .then((singleDrink) => {
-                 console.log(singleDrink)
-                 console.log(singleDrink.drinks[0].strIngredient1) //testing if we fetch the other API
-                 let ingredients = [
-                      singleDrink.drinks[0].strIngredient1,
-                      singleDrink.drinks[0].strIngredient2,
-                      singleDrink.drinks[0].strIngredient3,
-                      singleDrink.drinks[0].strIngredient4,
-                      singleDrink.drinks[0].strIngredient5,
-                      singleDrink.drinks[0].strIngredient6,
-                      singleDrink.drinks[0].strIngredient7,
-                      singleDrink.drinks[0].strIngredient8,
-                      singleDrink.drinks[0].strIngredient9,
-                      singleDrink.drinks[0].strIngredient10,
-                      singleDrink.drinks[0].strIngredient11,
-                      singleDrink.drinks[0].strIngredient12,
-                      singleDrink.drinks[0].strIngredient13,
-                      singleDrink.drinks[0].strIngredient14,
-                      singleDrink.drinks[0].strIngredient15,
-                 ];
-                 renderOneDrink(ingredients);
-
-            }) 
-  }    
-}); 
-
-
-// ------ recomendation drink ------------------------------------------------ (2)
 recommendation.addEventListener('click', (e) => {
+     drinkInfo.innerHTML = "";
   fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php?a=Alcoholic')
      .then(response => response.json())
      .then(data => {
@@ -129,13 +78,18 @@ recommendation.addEventListener('click', (e) => {
 function renderRandomDrink(drinkData) {
      drinkData.map(drink => {
           let recomendaDrink= `
-          <div class='drinksMenu'>
-               <img src="${drink.strDrinkThumb}" class="imgs" alt='${drink.strDrink}' style="width: 200px; display: flex">
-               <div class='drinkIngrediant'>
-                    <h3 id='drinkName'>${drink.strDrink}</h3>
-                    <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
-               </div>
-          </div>      
+          
+          <div class="card" style="width: 20rem;">
+          <img src="${drink.strDrinkThumb} "height: auto";
+          "width: 100%"; class="card-img-top" alt="...">
+          <div class="card-body" id="drink-card">
+          <h3 class="card-title overflow-hidden">${drink.strDrink}</h3>
+          <div id="hidden-ingredient">
+          <a id="${drink.idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
+          </div>
+        
+          </div>
+          </div>;     
           `
           randomDrink.innerHTML = recomendaDrink;
      }); 
@@ -143,15 +97,15 @@ function renderRandomDrink(drinkData) {
 
 })
 
-//-------
+
 randomDrink.addEventListener('click', (e) => {
      if(e.target.className.includes('btn-primary')){
-          console.log(e.target.id, "e.id"); //testing if we are targeting the id to call the other API
+          console.log(e.target.id, "e.id");
           fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${e.target.id}`)
                .then(response => response.json())
                .then((singleDrink) => {
                     console.log(singleDrink)
-                    console.log(singleDrink.drinks[0].strIngredient1) //testing if we fetch the other API
+                    console.log(singleDrink.drinks[0].strIngredient1)
                     let ingredients = [
                          singleDrink.drinks[0].strIngredient1,
                          singleDrink.drinks[0].strIngredient2,
@@ -175,17 +129,22 @@ randomDrink.addEventListener('click', (e) => {
      }    
 }); 
 
-function renderOneDrink(id) { // map over the ingredient and filter the empty and null values
+function renderOneDrink(id) { 
   console.log(id)
   let aDrink = `
   <div class="oneDrinkDiv">
-       <h3> Ingredients </h3>
+      
        <ul class="list-group list-group-flush" id="drink-ingredients">
        
        </ul>
   </div>`
-  oneDrink.innerHTML = aDrink;
-  const drinkIngrediant = document.getElementById('drink-ingredients'); 
+  drinkInfo.innerHTML = aDrink;
+  
+const hiddenIngredient=document.getElementById('hidden-ingredient')
+     hiddenIngredient.style.display="none";
+
+
+  const drinkIngrediant = document.getElementById('drink-card'); 
   id.map(ingredient => {
        switch (ingredient) {
             case null:
@@ -193,9 +152,9 @@ function renderOneDrink(id) { // map over the ingredient and filter the empty an
             case "":
                  break;
             default:
-            // console.log(ingredient)
             let iList = `<li>${ingredient}</li>`
-            oneDrink.innerHTML += iList; 
+            
+            drinkIngrediant.innerHTML += iList; 
        } 
   }) 
 }
