@@ -1,6 +1,4 @@
-const inputBox = document.getElementById("input");
 const searchButton = document.getElementById("genre-buttons");
-const cardGroup = document.getElementById("card-group")
 const bookList = document.getElementById("book-list")
 const randomDrink = document.getElementById("randomDrink")
 const drinkInfo = document.getElementById("drinkInfo")
@@ -8,30 +6,27 @@ const drinkInfo = document.getElementById("drinkInfo")
 searchButton.addEventListener("click", (event) => {
     event.preventDefault();
     let bookSubject = event.target.id;
-    console.log(bookSubject);
     const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${bookSubject}&maxResults=40`;
-    console.log(url);
     fetch(url)
     .then((response) => response.json())
     .then(result => {
       for (i = 0; i < result.items.length; i++){
         let item = document.createElement("a");
-        item.innerHTML += `<div class="card book-cards" style="width: 15rem;">
+        item.innerHTML += `
+          <div class="card book-cards" style="width: 15rem;">
             <img src="${result.items[i].volumeInfo.imageLinks.thumbnail}" class="card-img-top img-fluid" alt="...">
-            <div class="card-body">
-            <h3 class="card-title overflow-hidden">${result.items[i].volumeInfo.title}</h3>
-            <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">More Info</h5>
+              <div class="card-body">
+                <h3 class="card-title overflow-hidden">${result.items[i].volumeInfo.title}</h3>
+                <h5>by ${result.items[i].volumeInfo.authors[0]}</h5><br><h5 id="${result.items[i].id}" class="btn btn-primary btn-book btn-lg">More Info</h5>
             </div>
-            </div><br>`;
+          </div><br>`;
         document.getElementById("book-list").appendChild(item);
         searchButton.innerHTML= ""
         document.getElementById("head2").innerHTML="Pick your favorite book!"
       }
-
-})
-.catch((error) => {
-})
-
+    })
+    .catch((error) => {
+    })
 })
 
 bookList.addEventListener("click", bookDetails);
@@ -41,31 +36,24 @@ function bookDetails(event){
       fetch(`https://www.googleapis.com/books/v1/volumes/${event.target.id}`)
       .then((response) => response.json())
       .then(result => {
-          console.log(result.volumeInfo);
-          console.log(result.volumeInfo.imageLinks.large);
           const drinkSelector= document.getElementById('drink-selector-hidden')
           drinkSelector.style.display="flex";
-
           document.getElementById("head2").innerHTML="Pair it with a drink!"
-
           let item = document.createElement("a");
-          item.innerHTML = `<div class="card" style="width: 15rem;">
-          <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
-          "width: 100%"; class="card-img-top" alt="...">
-          <div class="card-body">
-          <h3 class="card-title overflow-hidden">${result.volumeInfo.title}</h3>
-          <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
-          </div>
-          </div>`;
-          console.log(item)
+          item.innerHTML = `
+            <div class="card" style="width: 15rem;">
+              <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
+              "width: 100%"; class="card-img-top" alt="...">
+                <div class="card-body">
+                <h3 class="card-title overflow-hidden">${result.volumeInfo.title}</h3>
+                <h5>by ${result.volumeInfo.authors[0]}</h5><br><p>Plot: ${result.volumeInfo.description}</h5>
+                </div>
+            </div>`;
           document.getElementById("book-list").innerHTML = "";
           document.getElementById("book-info").innerHTML = item.innerHTML;
-          let drinkButton = document.createElement("button");
-          drinkButton.innerHTML = "Want a drink?";
-          document.getElementById("more-info").appendChild(drinkButton);
       })
     .catch((error) => {
-    console.log("Unable to get certain elements")})
+      console.log("Unable to get certain elements")})
 }
 
 recommendation.addEventListener('click', (e) => {
@@ -78,7 +66,6 @@ recommendation.addEventListener('click', (e) => {
 function renderRandomDrink(drinkData) {
      drinkData.map(drink => {
           let recomendaDrink= `
-          
           <div class="card" style="width: 15rem;">
           <img src="${drink.strDrinkThumb} "height: auto";
           "width: 100%"; class="card-img-top" alt="...">
@@ -92,6 +79,8 @@ function renderRandomDrink(drinkData) {
           </div>;     
           `
           randomDrink.innerHTML = recomendaDrink;
+          let recommendation = document.getElementById("recommendation")
+          recommendation.innerHTML  = "Pick a different drink!"
      }); 
 };
 
@@ -140,8 +129,8 @@ function renderOneDrink(id) {
   </div>`
   drinkInfo.innerHTML = aDrink;
   
-const hiddenIngredient=document.getElementById('hidden-ingredient')
-     hiddenIngredient.style.display="none";
+  const hiddenIngredient=document.getElementById('hidden-ingredient')
+  hiddenIngredient.style.display="none";
 
 
   const drinkIngrediant = document.getElementById('drink-card'); 
