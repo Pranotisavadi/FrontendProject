@@ -51,6 +51,8 @@ function bookDetails(event){
             </div>`;
           document.getElementById("book-list").innerHTML = "";
           document.getElementById("book-info").innerHTML = item.innerHTML;
+          window.scrollTo(1, 1);
+
       })
     .catch((error) => {
       console.log("Unable to get certain elements")})
@@ -81,6 +83,7 @@ function renderRandomDrink(drinkData) {
           randomDrink.innerHTML = recomendaDrink;
           let recommendation = document.getElementById("recommendation")
           recommendation.innerHTML  = "Pick a different drink!"
+
      }); 
 };
 
