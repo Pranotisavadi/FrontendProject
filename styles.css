@@ -26,7 +26,7 @@ h2{
         flex-wrap: wrap;
         justify-content: center;
         align-content: center;
-        padding-top: 50px;
+        /* padding-top: 25px; */
     }
 
 .grid2{
@@ -109,7 +109,7 @@ h2{
     list-style-type: none; 
     }
 .row {
-    margin-top: 50px;
+    margin-top: 25px;
     }
 .button:active {
    box-shadow: 0 5px #C8651B;
@@ -367,6 +367,7 @@ border-radius: 2px;
 
     #contact-us-section {
         margin-top: 20px;
+        text-align: center;
     }
 
     #contact-us-section p{
