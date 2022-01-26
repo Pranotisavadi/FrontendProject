@@ -60,12 +60,53 @@ function bookDetails(event){
           console.log(item)
           document.getElementById("book-list").innerHTML = "";
           document.getElementById("book-info").innerHTML = item.innerHTML;
-          let drinkButton = document.createElement("button");
-          drinkButton.innerHTML = "Want a drink?";
-          document.getElementById("more-info").appendChild(drinkButton);
+          console.log(result.volumeInfo.categories[0])
+          if (result.volumeInfo.categories[0].includes("Romance")){
+               drinkRecommendation("11007")
+               console.log("Romance")
+          } else if (result.volumeInfo.categories[0].includes("Thriller")){
+               drinkRecommendation("11008")
+          } else if (result.volumeInfo.categories[0].includes("Fantasy")){
+               drinkRecommendation("11009")
+          } else if (result.volumeInfo.categories[0].includes("Adventure")){
+               drinkRecommendation("11010")
+          } else if (result.volumeInfo.categories[0].includes("History")){
+               drinkRecommendation("11011")
+          } else if (result.volumeInfo.categories[0].includes("Biography")){
+               drinkRecommendation("11012")
+          } else if (result.volumeInfo.categories[0].includes("Travel")){
+               drinkRecommendation("11013")
+          } else if (result.volumeInfo.categories[0].includes("Science")){
+               drinkRecommendation("11014")
+          }
       })
     .catch((error) => {
     console.log("Unable to get certain elements")})
+}
+
+//for each genre, pull from API a drink glass type - end point drink glass,
+//each genre, assign a drink glass
+//for ex: romance: champain flute
+function drinkRecommendation(id){
+     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)     
+     .then(response => response.json())
+     .then(data => {
+          console.log(data)
+          let recomendaDrink= `
+          <div class="card" style="width: 20rem;">
+          <img src="${data.drinks[0].strDrinkThumb} "height: auto";
+          "width: 100%"; class="card-img-top" alt="...">
+          <div class="card-body" id="drink-card">
+          <h3 class="card-title overflow-hidden">${data.drinks[0].strDrink}</h3>
+          <div id="hidden-ingredient">
+          <a id="${data.drinks[0].idDrink}" class="btn btn-primary">Ingredients <i class="fas fa-glass-martini-alt"></i></a>
+          </div>
+          </div>
+          </div>;     
+          `
+          console.log(data.drinks.strDrink)
+          randomDrink.innerHTML = recomendaDrink
+     });
 }
 
 recommendation.addEventListener('click', (e) => {
