@@ -7,7 +7,7 @@ const drinkInfo = document.getElementById("drinkInfo")
 
 searchButton.addEventListener("click", (event) => {
     event.preventDefault();
-    let bookSubject = event.target.id;
+    var bookSubject = event.target.id;
     console.log(bookSubject);
     const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${bookSubject}&maxResults=40`;
     console.log(url);
