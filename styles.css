@@ -26,7 +26,7 @@ h2{
         flex-wrap: wrap;
         justify-content: center;
         align-content: center;
-        padding-top: 50px;
+        /* padding-top: 25px; */
     }
 
 .grid2{
@@ -109,7 +109,7 @@ h2{
     list-style-type: none; 
     }
 .row {
-    margin-top: 50px;
+    margin-top: 25px;
     }
 .button:active {
    box-shadow: 0 5px #C8651B;
@@ -176,13 +176,6 @@ background-color: #C8651B;
 
 
 }
-<<<<<<< HEAD
-#landing-page-navigation1{
-    background-color: #660527;
-    
-    
-    }
-=======
 
 #landing-page-navigation a{
     color: white; 
@@ -194,7 +187,6 @@ background-color: #C8651B;
 
 }
 
->>>>>>> b4e8051dec0e095cc964423668b827c81570b22e
 
 #landing-page-main{
 }
