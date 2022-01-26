@@ -68,7 +68,8 @@ recommendation.addEventListener('click', (e) => {
 function renderRandomDrink(drinkData) {
      drinkData.map(drink => {
           let recomendaDrink= `
-          <div class="card" style="width: 15rem;">
+          
+          <div class="card" style="width: 20rem;">
           <img src="${drink.strDrinkThumb} "height: auto";
           "width: 100%"; class="card-img-top" alt="...">
           <div class="card-body" id="drink-card">

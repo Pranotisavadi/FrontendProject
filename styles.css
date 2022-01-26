@@ -8,7 +8,11 @@
 h2{
         text-align: center
 } 
-
+#landing-page-navigation1{
+    background-color: #660527;
+    
+    
+    }
 
 .grid1{
         /*border:  3px solid black;*/
@@ -172,6 +176,13 @@ background-color: #C8651B;
 
 
 }
+<<<<<<< HEAD
+#landing-page-navigation1{
+    background-color: #660527;
+    
+    
+    }
+=======
 
 #landing-page-navigation a{
     color: white; 
@@ -183,6 +194,7 @@ background-color: #C8651B;
 
 }
 
+>>>>>>> b4e8051dec0e095cc964423668b827c81570b22e
 
 #landing-page-main{
 }
@@ -404,6 +416,9 @@ font-family: 'Anton', sans-serif;
     
 .book-cards{
     background-color: #C8651B;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
 }
 
 .btn-book{
@@ -431,4 +446,8 @@ li button:hover{
 
 .button-main:hover{
     background-color: black;
+}
+
+#recommendation-bullet{
+   
 }
