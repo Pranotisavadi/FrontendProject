@@ -88,9 +88,6 @@ function bookDetails(event){
     console.log("Unable to get certain elements")})
 }
 
-//for each genre, pull from API a drink glass type - end point drink glass,
-//each genre, assign a drink glass
-//for ex: romance: champain flute
 function drinkRecommendation(id){
      fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
      .then(response => response.json())
