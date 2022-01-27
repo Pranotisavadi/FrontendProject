@@ -49,7 +49,7 @@ function bookDetails(event){
           document.getElementById("head2").innerHTML="Pair it with a drink!"
 
           let item = document.createElement("a");
-          item.innerHTML = `<div class="card" style="width: 20rem;">
+          item.innerHTML = `<div class="card scroll" style="width: 20rem;">
           <img src="${result.volumeInfo.imageLinks.thumbnail} "height: auto";
           "width: 100%"; class="card-img-top" alt="...">
           <div class="card-body">
