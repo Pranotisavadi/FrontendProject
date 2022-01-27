@@ -62,7 +62,7 @@ function bookDetails(event){
           document.getElementById("book-info").innerHTML = item.innerHTML;
           console.log(result.volumeInfo.categories[0])
           if (result.volumeInfo.categories[0].includes("Romance")){
-               drinkRecommendation("178338") || drinkRecommendation("15182")
+               drinkRecommendation("178338")
                console.log("Romance")
           } else if (result.volumeInfo.categories[0].includes("Thriller")){
                drinkRecommendation("12388")
